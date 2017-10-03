@@ -1,4 +1,4 @@
-%% 2017-8-21 this function is to implement the final prediction model TSAM
+%% this function is to implement the final prediction model TSAM
 function Predict_score=TSAM(filename,pretype,featype,sgtype)
 % filename--the .fa file containing the fasta format genome sequences
 % pretype--prediction type: 1 for regression(default) cut human,mouse; 2 for
@@ -11,10 +11,25 @@ load('Models.mat');
 struct=Models{5,1};
 basicE=Models{4,1};
 if strfind(filename,'.fa') || strfind(filename,'.fasta')
-
+    %obtain the genome sequence annotation information
     [seqinfo,pos_subseq,geneinfo]=MapGeno2Pro(filename,struct);
-    %     if length(pos_subseq)==0 && length(geneinfo{6,2})==0
-    %         disp('this sequence has no detail genome information');
+    
+    if length(geneinfo)==0 % no annotation information
+        seqs_info=[];
+        [N,a]=size(seqinfo);
+        seqs=[];
+        seq_final=cell(1,2);
+        seq_final{1,1}=seqinfo{N,2};
+        seq_final{1,2}=seqinfo{N,1};
+        seqs=[seqs;seq_final];
+        spacers=seaSpacer(seqs,seqs_info,4,3,'');
+
+        [N,a]=size(spacers);
+        test_seqs=spacers(:,1:3);
+        cut_fea=[];
+        featype=2;
+        sgtype=0;
+    else
     seqs_info{1,1}=seqinfo;
     seqs_info{1,2}=pos_subseq;
     seqs_info{1,3}=geneinfo;
@@ -34,6 +49,8 @@ if strfind(filename,'.fa') || strfind(filename,'.fasta')
         cut_fea(i,2)=spacers{i,11};
         cut_fea(i,3)=spacers{i,12};
     end
+    end
+    
     if sgtype==1 % cut at coding region only
         index=find(cut_fea(:,3)>0);
         test_seqs=test_seqs(index,:);
@@ -98,24 +115,22 @@ if strfind(filename,'.fa') || strfind(filename,'.fasta')
     test_score=zeros(n,1);
     
     if pretype==3
-        [predict_lib,acc,dec_values] = svmpredict(test_score,test_data,svm_model,'-b 1');
+        [predict_lib,acc,dec_values] = svmpredict(test_score,test_data,svm_model,'-b 1 -q 1');
         libsvm_score=dec_values(:,1);
         final_score=(libsvm_score+xgboost_score)/2;
         predict_score=zeros(n,1);
         predict_score(find(final_score>0.5),1)=1;
     elseif pretype<3
-        [libsvm_score,acc,mse] = svmpredict(test_score,test_data,svm_model);
+        [libsvm_score,acc,mse] = svmpredict(test_score,test_data,svm_model, '-q 1');
         final_score=(libsvm_score+xgboost_score)/2;
         predict_score=final_score;
     end
     Predict_score=test_seqs;
     for i=1:n
-        Predict_score{i,4}=predict_score(i,1);
+           Predict_score{i,4}= predict_score(i,1);
     end
 else
     disp('please provide a .fa format sequence file');
     return;
     
 end
-%         disp('this file just containing genome information');
-
