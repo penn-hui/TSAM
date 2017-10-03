@@ -26,6 +26,7 @@ The tool for sgRNA design
    -finalized_model_3_3.model
    -Models.mat
    -ReadMe.docx
+   -example.fa
 
 2.2 parameter description
 TSAM supports predicting sgRNA cutting efficiencies or classifying sgRNAs into high efficient or low efficient. There are three parameters should be set such as “pretype”, “featype”, “sgtype”. “pretype” can be set as 1/2/3, where
@@ -49,12 +50,15 @@ b. Downloading the genome sequence files from the ensembl database (https://www.
 Then, click the Download sequence link:
   
 
-Later choose the fasta format and tick all the included sequences and click the Download button. Saving the downloaded fasta file in the TSAM fold (imaging the file name is not changed, the name is “Homo_sapiens_MYCN_201_sequence.fa”).
+Later choose the fasta format and tick all the included sequences and click the Download button. Saving the downloaded fasta file in the TSAM folder (imaging the file name is not changed, the name is “Homo_sapiens_MYCN_201_sequence.fa”).
  
 c. change your matlab working fold to be the fold path: “your path\TSAM\” where you locate the TSAM fold under user’s path. Ensure that your python 2.7 has been installed and the lib path has been correctly set. The matlab should be a newer version, as it needs to call the python functions. 
 d. run the following function in your matlab command line:
+
         Predict_score=TSAM('Homo_sapiens_MYCN_201_sequence.fa', 1, 1, 1);
+        
 This command will predict the potential sgRNAs’ cutting efficiencies for cutting MYCN gene with TSAM and the non-coding parts are not also considered. If classification mode is used, just run:
+
         Predict_score=TSAM('Homo_sapiens_MYCN_201_sequence.fa', 3, 1, 0);
         
 2.3.2 design sgRNAs with only sequence information
@@ -62,7 +66,9 @@ If only the sequence information is available, one can run the codes in the foll
 a. prepare a fasta file with the length longer than 30, for example: “example.fa”;
 b. change your matlab working fold to be the fold path: “your path\TSAM\” where you locate the TSAM fold under user’s path. Ensure that your python 2.7 has been installed and the lib path has been correctly set. The matlab should be a newer version, as it needs to call the python functions. 
 c. run the following function in your matlab command line:
+
         Predict_score=TSAM('example.fa', 1, 2, 0);
+        
 Here, the parameter “featype” and “sgtype” can only set as 2 and 0 only.
 
 2.4 Output of the function TSAM
