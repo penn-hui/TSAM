@@ -39,6 +39,7 @@ TSAM supports predicting sgRNA cutting efficiencies or classifying sgRNAs into h
 “sgtype” is to determine whether those sgRNAs cutting at the non-coding regions are considered:
           sgtype=0: all the sgRNAs are considered including cutting at non-coding regions;
           sgtype=1: for exons only.
+
 2.3 steps for run the codes
 2.3.1 design sgRNAs with detail gene annotation information
    To predict the efficiencies of the sgRNAs cutting a given gene, such as the MYCN, one should do as the following steps:
@@ -55,6 +56,7 @@ d. run the following function in your matlab command line:
         Predict_score=TSAM('Homo_sapiens_MYCN_201_sequence.fa', 1, 1, 1);
 This command will predict the potential sgRNAs’ cutting efficiencies for cutting MYCN gene with TSAM and the non-coding parts are not also considered. If classification mode is used, just run:
         Predict_score=TSAM('Homo_sapiens_MYCN_201_sequence.fa', 3, 1, 0);
+        
 2.3.2 design sgRNAs with only sequence information
 If only the sequence information is available, one can run the codes in the following way:
 a. prepare a fasta file with the length longer than 30, for example: “example.fa”;
@@ -62,6 +64,9 @@ b. change your matlab working fold to be the fold path: “your path\TSAM\” wh
 c. run the following function in your matlab command line:
         Predict_score=TSAM('example.fa', 1, 2, 0);
 Here, the parameter “featype” and “sgtype” can only set as 2 and 0 only.
+
+2.4 Output of the function TSAM
+The output of the TSAM is a cell type data with four columns. The first column is the 20nt spacer sequence, the second column is the extended 30nt sequence. The third column is the gene name while the last column is the predicted the score or label. When “pretype=1” where the human and mouse genomes are cut, the predicted score is in the boundary of [0, 1], larger value means more efficient. When “pretype=2”, the genome is zebrafish, the predicted score is between 0 and 100. Again, larger value means more efficient. If “pretype=3”, the classification of sgRNAs for cutting human and mouse genes will output label “1” or “0”, where “1” means high efficient and “0” means low efficient.
 
           
 
