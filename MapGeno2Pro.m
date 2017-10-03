@@ -15,7 +15,7 @@ N=length(seq_all);
 seqinfo=cell(N,6);
 exon_pos_info=[];
 
-
+% obtain the annotation information
 for j=1:N
     seq=seq_all(j);
     seq_name=seq.Header;
@@ -37,7 +37,10 @@ for j=1:N
     end
 end
 
-
+if length(exon_pos_info)==0
+    pos_subseq=[];
+    geneinfo=[];
+else
 subseq=seqinfo(find(exon_pos_info==1),:);
 chr_seq=seqinfo{find(strcmp(seqinfo(:,4),'GRC')),2};
 
@@ -68,13 +71,7 @@ geneinfo{1,3}='gene_start';
 geneinfo{1,4}='gene_end';
 geneinfo{1,5}='strand';
 geneinfo{1,6}='genome version';
-% genome=e1+i1+e2+i2+...
-% cDNA=e1+e2+...
-% cds=cDNA-utr5-utr3;
-% transcription start site=exon1 pos1
-% geneinfo{1,7}='gene_TSS';
-% % translation start site=utr5 pos end+1
-% geneinfo{1,8}='gene_tss';
+
 geneinfo{2,1}=seqinfo{1,1}(1,1:gene_name_in-1);
 chromosome_name=seqinfo{N,1};
 seq_se_in=strfind(chromosome_name,':');
@@ -87,8 +84,7 @@ geneinfo{2,3}=seq_start;
 geneinfo{2,4}=seq_end;
 geneinfo{2,5}=str2num(chromosome_name(1,seq_se_in(length(seq_se_in))+1:end));
 geneinfo{2,6}=chromosome_name(1,seq_se_in(length(seq_se_in)-4)+1:seq_se_in(length(seq_se_in)-3)-1);
-% geneinfo{2,7}=1;
-% geneinfo{2,8}=
+end
 
 
 
