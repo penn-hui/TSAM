@@ -57,7 +57,7 @@ run the codes. For example:
 
 Then, you can find the .csv file in the folder: python_codes/predicted_scores/ predict_results.csv
 More details about how to run the python codes can be found in the ReadMe.txt file under the python_codes folder 
-************************************************************************************************************
+***********************************************************************************************************
 2. How to run the Matlab version codes:
 
 Download the codes and decompress the files, then open a Matlab software (Matlab 2015 or higher). Adding the folder
