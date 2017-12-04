@@ -68,7 +68,7 @@ TSAM/matlab_codes/ into the working path. Then run the prediction command. For e
 (please pay attention on the path character ‘/’ on linux os and ‘\’ on windows os)
 More details about how to run the python codes can be found in the ReadMe.txt file under the matlab_codes folder 
 
-*************************************************************************************************************
-*************************************************************************************************************
+***********************************************************************************************************
+***********************************************************************************************************
 
 ***Please contact Hui Peng: Hui.Peng-2@student.uts.edu.au if you encounter some problems when run the codes.
