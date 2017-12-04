@@ -57,7 +57,7 @@ run the codes. For example:
 
 Then, you can find the .csv file in the folder: python_codes/predicted_scores/ predict_results.csv
 More details about how to run the python codes can be found in the ReadMe.txt file under the python_codes folder 
-******************************************************************************************************************
+************************************************************************************************************
 2. How to run the Matlab version codes:
 
 Download the codes and decompress the files, then open a Matlab software (Matlab 2015 or higher). Adding the folder
@@ -68,7 +68,7 @@ TSAM/matlab_codes/ into the working path. Then run the prediction command. For e
 (please pay attention on the path character ‘/’ on linux os and ‘\’ on windows os)
 More details about how to run the python codes can be found in the ReadMe.txt file under the matlab_codes folder 
 
-****************************************************************************************************************
-****************************************************************************************************************
+*************************************************************************************************************
+*************************************************************************************************************
 
 ***Please contact Hui Peng: Hui.Peng-2@student.uts.edu.au if you encounter some problems when run the codes.
