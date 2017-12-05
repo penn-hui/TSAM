@@ -3,7 +3,7 @@ A simple introduction:
 TSAM is the abbreviation of Two-Step-Averaging-Method which implements prediction or classification
 with a two step process. In the first step, a xgboost model is adopted to predict the first-step
 scores. Then, the xgboost selected important features will be combined with our profiled Hidden
-Markov Model features to predict the second-step score. Finally, the TSAM output a averaged score
+Markov Model features to predict the second-step scores. Finally, the TSAM outputs the average scores
 as the predicted efficiency score.
 
 ***********************************************************************************************************
