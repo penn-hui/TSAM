@@ -11,7 +11,7 @@ as the predicted efficiency score.
 What's included in the tool package:
 
 The offline TSAM includes the Python version and the Matlab version. Both of these two version
-tool can be used to predict sgRNAs' cutting efficiencies or classify the sgRNAs into high or
+tools can be used to predict sgRNAs' cutting efficiencies or classify the sgRNAs into high or
 efficent ones. We did not control the precision of the floating-point operations, thus the predicted
 scores of the Matlab version and the Python version may contain some differences (within +/-0.01).
 The Matlab version can just be used to do the prediction and classfication but can not used to implement
